@@ -18,6 +18,10 @@ class Url < ActiveRecord::Base
   def snipped() self.id.to_s(36) end
 end
 
+error ActiveRecord::RecordNotFound do
+  haml :index
+end
+
 get '/' do haml :index end
 
 post '/' do
