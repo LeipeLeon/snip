@@ -5,7 +5,7 @@ ActiveRecord::Base.establish_connection(
 )
 
 configure do
-  LOGGER = Logger.new("log/sinatra.log") 
+  LOGGER = Logger.new(File.expand_path(File.join(File.dirname(__FILE__), 'log', 'sinatra.log')))
 end
  
 helpers do
