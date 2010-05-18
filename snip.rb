@@ -24,31 +24,3 @@ class Url
   def snipped() self.id.to_s(36) end  
 end
 
-__END__
-
-@@ layout
-!!! 1.1
-%html
-  %head
-    %title Snip!
-    %link{:rel => 'stylesheet', :href => 'http://www.w3.org/StyleSheets/Core/Modernist', :type => 'text/css'}  
-  = yield
-
-@@ index
-%h1.title Snip!
-- unless @url.nil?
-  %code= @url.original
-  snipped to 
-  %a{:href => env['HTTP_REFERER'] + @url.snipped}
-    = env['HTTP_REFERER'] + @url.snipped
-#err.warning= env['sinatra.error']
-%form{:method => 'post', :action => '/'}
-  Snip this:
-  %input{:type => 'text', :name => 'original', :size => '50'} 
-  %input{:type => 'submit', :value => 'snip!'}
-%small copyright &copy;
-%a{:href => 'http://blog.saush.com'}
-  Chang Sau Sheong
-%br
-  %a{:href => 'http://github.com/sausheong/snip'}
-    Full source code
