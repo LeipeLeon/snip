@@ -36,4 +36,19 @@ namespace :deploy do
     deploy.update
     deploy.restart
   end
+
+  desc "symlinks to .yml in shared/config" 
+  task :symlink_config do
+    ['database'].each {|yml_file|
+      # remove  the git version of yml_file.yml
+      run "if [ -e \"#{release_path}/config/#{yml_file}.yml\" ] ; then rm #{release_path}/config/#{yml_file}.yml; fi"
+
+      # als shared conf bestand nog niet bestaat
+      run "if [ ! -e \"#{deploy_to}/#{shared_dir}/config/#{yml_file}.yml\" ] ; then cp #{deploy_to}/#{shared_dir}/#{repository_cache}/config/#{yml_file}.example.yml #{deploy_to}/#{shared_dir}/config/#{yml_file}.yml; fi"
+
+      # link to the shared yml_file.yml
+      run "ln -nfs #{deploy_to}/#{shared_dir}/config/#{yml_file}.yml #{release_path}/config/#{yml_file}.yml" 
+    }
+  end
+  after "deploy:finalize_update", "deploy:symlink_config"
 end
