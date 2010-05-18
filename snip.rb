@@ -1,4 +1,14 @@
 %w(rubygems sinatra dm-core dm-timestamps uri).each  { |lib| require lib}
+configure do
+  LOGGER = Logger.new("log/sinatra.log") 
+end
+ 
+helpers do
+  def logger
+    LOGGER
+  end
+end
+
 
 get '/' do haml :index end
 
