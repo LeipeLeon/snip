@@ -24,6 +24,13 @@ end
 
 get '/' do haml :index end
 
+get '/api' do
+  uri = URI::parse(params[:url])
+  raise "Invalid URL" unless uri.kind_of? URI::HTTP or uri.kind_of? URI::HTTPS
+  @url = Url.find_or_create_by_original(uri.to_s)
+  "http://burgr.nl/#{@url.snipped}"
+end
+
 post '/' do
   uri = URI::parse(params[:original])
   raise "Invalid URL" unless uri.kind_of? URI::HTTP or uri.kind_of? URI::HTTPS
