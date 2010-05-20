@@ -1,0 +1,5 @@
+- for url in @urls
+	%a{:href => "http://burgr.nl/#{url.snipped}"}
+		= "http://burgr.nl/" + url.snipped
+	= url.original
+	<br/>

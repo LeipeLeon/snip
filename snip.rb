@@ -24,6 +24,11 @@ end
 
 get '/' do haml :index end
 
+get '/list' do 
+  @urls = Url.find(:all, :limit => 10, :order => "id desc")
+  haml :list
+end
+
 get '/api' do
   uri = URI::parse(params[:url])
   raise "Invalid URL" unless uri.kind_of? URI::HTTP or uri.kind_of? URI::HTTPS
