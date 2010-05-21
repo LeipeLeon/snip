@@ -1,6 +1,16 @@
-- for url in @urls
-	%a{:href => "http://burgr.nl/#{url.snipped}"}
-		= "http://burgr.nl/" + url.snipped
-	= url.counter
-	= url.original
-	<br/>
+%table
+	%tr
+		%th URL
+		%th Count
+		%th Created
+		%th Original
+	- for url in @urls
+		%tr
+			%td
+				%a{:href => "http://burgr.nl/#{url.snipped}"}
+					= "http://burgr.nl/" + url.snipped
+			%td= url.counter
+			%td= url.created_at
+			%td
+				%a{:href => url.original}
+					= url.original
