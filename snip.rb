@@ -25,7 +25,7 @@ end
 get '/' do haml :index end
 
 get '/list' do 
-  @urls = Url.find(:all, :limit => 10, :order => "id desc")
+  @urls = Url.find(:all, :limit => 50, :order => "id desc")
   haml :list
 end
 
