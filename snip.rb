@@ -43,4 +43,8 @@ post '/' do
   haml :index
 end
 
-get '/:snipped' do redirect Url.find(params[:snipped].to_i(36)).original end
+get '/:snipped' do 
+  @url = Url.find(params[:snipped].to_i(36))
+  @url.update_attribute(:counter, @url.counter + 1)
+  redirect @url.original
+end
