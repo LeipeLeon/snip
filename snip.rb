@@ -33,6 +33,9 @@ end
 error ActiveRecord::RecordNotFound do
   haml :index
 end
+error RuntimeError do
+  haml :index
+end
 
 get '/' do haml :index end
 
