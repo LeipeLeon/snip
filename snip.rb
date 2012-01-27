@@ -14,7 +14,7 @@ helpers do
   end
 end
 
-class Url < ActiveRecord::Base
+class Snip < ActiveRecord::Base
   def snipped() self.id.to_s(36) end
 end
 
@@ -25,26 +25,26 @@ end
 get '/' do haml :index end
 
 get '/list' do 
-  @urls = Url.find(:all, :limit => 50, :order => "id desc")
+  @snips = Snip.find(:all, :limit => 50, :order => "id desc")
   haml :list
 end
 
 get '/api' do
   uri = URI::parse(params[:url])
   raise "Invalid URL" unless uri.kind_of? URI::HTTP or uri.kind_of? URI::HTTPS
-  @url = Url.find_or_create_by_original(uri.to_s)
-  "http://burgr.nl/#{@url.snipped}"
+  @snip = Snip.find_or_create_by_original(uri.to_s)
+  "http://burgr.nl/#{@snip.snipped}"
 end
 
 post '/' do
   uri = URI::parse(params[:original])
   raise "Invalid URL" unless uri.kind_of? URI::HTTP or uri.kind_of? URI::HTTPS
-  @url = Url.find_or_create_by_original(uri.to_s)
+  @snip = Snip.find_or_create_by_original(uri.to_s)
   haml :index
 end
 
 get '/:snipped' do 
-  @url = Url.find(params[:snipped].to_i(36))
-  @url.update_attribute(:counter, @url.counter + 1)
-  redirect @url.original
+  @snip = Snip.find(params[:snipped].to_i(36))
+  @snip.update_attribute(:counter, @snip.counter + 1)
+  redirect @snip.original
 end

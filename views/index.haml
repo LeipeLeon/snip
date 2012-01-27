@@ -1,9 +1,9 @@
 %h1.title BurGr.nl!
-- unless @url.nil?
-	%code= @url.original
+- unless @snip.nil?
+	%code= @snip.original
 	snipped to 
-	%a{:href => env['HTTP_REFERER'] + @url.snipped}
-		= env['HTTP_REFERER'] + @url.snipped
+	%a{:href => env['HTTP_REFERER'] + @snip.snipped}
+		= env['HTTP_REFERER'] + @snip.snipped
 #err.warning= env['sinatra.error']
 %form{:method => 'post', :action => '/'}
 	Verkorten:
