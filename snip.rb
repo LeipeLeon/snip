@@ -15,7 +15,19 @@ helpers do
 end
 
 class Snip < ActiveRecord::Base
-  def snipped() self.id.to_s(36) end
+  def self.snip(url)
+    uri = URI::parse(url)
+    raise "Invalid URL" unless uri.kind_of? URI::HTTP or uri.kind_of? URI::HTTPS
+    @snip = Snip.find_or_create_by_original(uri.to_s)
+  end
+  def self.snap(id, count = true)
+    @snip = Snip.find(id.to_i(36))
+    @snip.update_attribute(:counter, @snip.counter + 1) if count
+    @snip
+  end
+  def snipped
+    self.id.to_s(36)
+  end
 end
 
 error ActiveRecord::RecordNotFound do
@@ -30,21 +42,16 @@ get '/list' do
 end
 
 get '/api' do
-  uri = URI::parse(params[:url])
-  raise "Invalid URL" unless uri.kind_of? URI::HTTP or uri.kind_of? URI::HTTPS
-  @snip = Snip.find_or_create_by_original(uri.to_s)
+  @snip = Snip.snip(params[:url])
   "http://burgr.nl/#{@snip.snipped}"
 end
 
 post '/' do
-  uri = URI::parse(params[:original])
-  raise "Invalid URL" unless uri.kind_of? URI::HTTP or uri.kind_of? URI::HTTPS
-  @snip = Snip.find_or_create_by_original(uri.to_s)
+  @snip = Snip.snip(params[:original])
   haml :index
 end
 
 get '/:snipped' do 
-  @snip = Snip.find(params[:snipped].to_i(36))
-  @snip.update_attribute(:counter, @snip.counter + 1)
+  @snip = Snip.snap(params[:snipped])
   redirect @snip.original
 end
