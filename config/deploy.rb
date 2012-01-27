@@ -1,5 +1,8 @@
+require "bundler/capistrano"
+
+set :environment, 'production'
 set :application, "snip"
-set :user, 'berl'
+set :user, 'bitnami'
 set :use_sudo, false
 
 set :scm, :git
@@ -7,18 +10,19 @@ default_run_options[:pty] = true
 set :repository,  "git@github.com:LeipeLeon/snip.git"
 set :repository_cache, "git_master"
 set :deploy_via, :remote_cache
-set :deploy_to, "/home/#{user}/apps/#{application}"
+set :deploy_to, "/opt/bitnami/projects/#{application}"
 
 set :scm_verbose, :true
 set :use_sudo, false
 set :keep_releases, 3
 
-role :app, "web"
-role :web, "web"
-role :db,  "web", :primary => true
+role :app, "bwh"
+role :web, "bwh"
+role :db,  "bwh", :primary => true
 
 set :runner, user
 set :admin_runner, user
+
 
 namespace :deploy do
   desc "Restarting mod_rails with restart.txt"

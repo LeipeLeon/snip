@@ -5,3 +5,5 @@ gem "activerecord"
 # gem "uri"
 gem "haml"
 gem "mysql"
+
+gem "capistrano"
