@@ -65,6 +65,10 @@ error RuntimeError do
   haml :index
 end
 
+before do
+  ActiveRecord::Base.verify_active_connections!
+end
+
 get '/' do haml :index end
 
 get '/list' do 
