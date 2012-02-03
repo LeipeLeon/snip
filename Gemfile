@@ -7,3 +7,4 @@ gem "haml"
 gem "mysql"
 
 gem "capistrano"
+gem 'newrelic_rpm'

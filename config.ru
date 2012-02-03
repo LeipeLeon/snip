@@ -4,6 +4,7 @@ require 'bundler'
 Bundler.require
 
 require 'sinatra'
+require 'newrelic_rpm'
 require 'snip.rb'
 
 log = File.new("log/sinatra.log", "a+")
