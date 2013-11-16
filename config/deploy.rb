@@ -1,24 +1,23 @@
+# -*- encoding : utf-8 -*-
 require "bundler/capistrano"
-
-set :environment, 'production'
-set :application, "snip"
-set :user, 'bitnami'
-set :use_sudo, false
+set :application, "burgr"
 
 set :scm, :git
+set :user, 'www-data'
+set :group, 'www-data'
+set :deploy_to, '/var/rails/burgr'
+set :use_sudo, false
+set :instance, "bwh4"
+
 default_run_options[:pty] = true
 set :repository,  "git@github.com:LeipeLeon/snip.git"
 set :repository_cache, "git_master"
 set :deploy_via, :remote_cache
-set :deploy_to, "/opt/bitnami/projects/#{application}"
 
 set :scm_verbose, :true
-set :use_sudo, false
 set :keep_releases, 3
 
-role :app, "bwh"
-role :web, "bwh"
-role :db,  "bwh", :primary => true
+role :app, "bwh4"
 
 set :runner, user
 set :admin_runner, user
