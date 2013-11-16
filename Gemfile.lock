@@ -24,7 +24,7 @@ GEM
     highline (1.6.2)
     i18n (0.6.0)
     multi_json (1.0.4)
-    mysql (2.8.1)
+    mysql2 (0.3.14)
     net-scp (1.0.4)
       net-ssh (>= 1.99.1)
     net-sftp (2.0.5)
@@ -50,6 +50,6 @@ DEPENDENCIES
   activerecord
   capistrano
   haml
-  mysql
+  mysql2
   newrelic_rpm
   sinatra

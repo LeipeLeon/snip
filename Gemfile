@@ -4,7 +4,7 @@ gem "sinatra"
 gem "activerecord"
 # gem "uri"
 gem "haml"
-gem "mysql"
+gem "mysql2"
 
 gem "capistrano"
 gem 'newrelic_rpm'
