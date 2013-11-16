@@ -1,7 +1,7 @@
 %w(rubygems sinatra active_record uri haml logger).each  { |lib| require lib}
 
 ActiveRecord::Base.establish_connection(
-  YAML.load_file(File.expand_path(File.join(File.dirname(__FILE__), 'config', 'database.yml')))
+  YAML.load_file(File.expand_path(File.join(File.dirname(__FILE__), 'config', 'database.yml')))[ENV['RAILS_ENV'] || 'development'].symbolize_keys
 )
 
 configure do
