@@ -7,4 +7,4 @@ gem "haml"
 gem "mysql2"
 
 gem "capistrano"
-gem 'newrelic_rpm'
+gem 'newrelic_rpm', '< 4.0'
