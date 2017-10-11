@@ -1,10 +1,18 @@
 source 'https://rubygems.org'
 
 gem "sinatra"
+gem "sinatra-contrib"
+gem "puma"
 gem "activerecord"
+gem "sinatra-activerecord"
 # gem "uri"
 gem "haml"
-gem "mysql2"
+gem "pg"
+gem "dotenv"
 
-gem "capistrano"
 gem 'newrelic_rpm', '< 4.0'
+
+gem 'airbrake'
+group :development do
+  gem "foreman"
+end
