@@ -1,13 +1,19 @@
-%w(rubygems sinatra active_record uri haml logger).each  { |lib| require lib}
+require 'dotenv'
+Dotenv.load
 
-ActiveRecord::Base.establish_connection(
-  YAML.load_file(File.expand_path(File.join(File.dirname(__FILE__), 'config', 'database.yml')))[ENV['RAILS_ENV'] || 'development'].symbolize_keys
-)
+require 'sinatra'
+require "sinatra/reloader" if development?
+require "sinatra/activerecord"
+require "./config/environments"
+
+require 'uri'
+require 'haml'
+require 'logger'
 
 configure do
   LOGGER = Logger.new(File.expand_path(File.join(File.dirname(__FILE__), 'log', 'sinatra.log')))
 end
- 
+
 helpers do
   def logger
     LOGGER
@@ -65,13 +71,9 @@ error RuntimeError do
   haml :index
 end
 
-before do
-  ActiveRecord::Base.verify_active_connections!
-end
-
 get '/' do haml :index end
 
-get '/list' do 
+get '/list' do
   @snips = Snip.find(:all, :limit => 50, :order => "id desc")
   haml :list
 end
@@ -86,7 +88,7 @@ post '/' do
   haml :index
 end
 
-get '/:snipped' do 
+get '/:snipped' do
   @snip = Snip.snap(params[:snipped])
   redirect @snip.original
 end
