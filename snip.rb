@@ -80,7 +80,7 @@ end
 
 get '/api' do
   @snip = Snip.snip(params[:url])
-  "http://burgr.nl/#{@snip.snipped}"
+  "https://burgr.nl/#{@snip.snipped}"
 end
 
 post '/' do
