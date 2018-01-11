@@ -24,7 +24,7 @@ class Snip < ActiveRecord::Base
   def self.snip(url)
     uri = URI::parse(url)
     raise "Invalid URL" unless uri.kind_of? URI::HTTP or uri.kind_of? URI::HTTPS
-    @snip = Snip.find_or_create_by_original(uri.to_s)
+    @snip = Snip.find_or_create_by(original: uri.to_s)
   end
   def self.snap(id, count = true)
     @snip = Snip.find(id.to_i(36))
