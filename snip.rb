@@ -20,6 +20,16 @@ helpers do
   end
 end
 
+require 'airbrake'
+
+Airbrake.configure do |c|
+  c.project_id =  ENV.fetch('AIRBRAKE_ID')
+  c.project_key = ENV.fetch('AIRBRAKE_KEY')
+  # Display debug output.
+  # c.logger.level = Logger::DEBUG
+end
+use Airbrake::Rack::Middleware
+
 class Snip < ActiveRecord::Base
   def self.snip(url)
     uri = URI::parse(url)
