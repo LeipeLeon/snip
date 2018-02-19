@@ -45,6 +45,9 @@ class Snip < ActiveRecord::Base
     self.id.to_s(36)
   end
 end
+after do
+  ActiveRecord::Base.clear_active_connections!
+end
 
 # Overide the logging and print the referer/useragent
 module Rack
