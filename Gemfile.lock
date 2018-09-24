@@ -28,8 +28,8 @@ GEM
     newrelic_rpm (3.18.1.330)
     pg (0.18.4)
     puma (3.12.1)
-    rack (1.5.2)
-    rack-protection (1.5.1)
+    rack (1.6.10)
+    rack-protection (1.5.5)
       rack
     rack-test (0.7.0)
       rack (>= 1.0, < 3)
