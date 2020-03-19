@@ -26,7 +26,7 @@ GEM
     minitest (5.10.3)
     multi_json (1.12.2)
     newrelic_rpm (3.18.1.330)
-    pg (0.18.4)
+    pg (1.2.3)
     puma (3.10.0)
     rack (1.5.2)
     rack-protection (1.5.1)
