@@ -26,8 +26,10 @@ GEM
     minitest (5.10.3)
     multi_json (1.12.2)
     newrelic_rpm (3.18.1.330)
+    nio4r (2.5.4)
     pg (0.18.4)
-    puma (3.10.0)
+    puma (4.3.7)
+      nio4r (~> 2.0)
     rack (1.5.2)
     rack-protection (1.5.1)
       rack
