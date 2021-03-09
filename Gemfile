@@ -12,7 +12,7 @@ gem "haml"
 gem "pg"
 gem "dotenv"
 
-gem 'newrelic_rpm', '< 4.0'
+gem 'newrelic_rpm', '<= 6.15.0'
 
 gem 'airbrake'
 group :development do

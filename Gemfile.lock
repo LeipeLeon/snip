@@ -29,7 +29,7 @@ GEM
     multi_json (1.15.0)
     mustermann (1.1.1)
       ruby2_keywords (~> 0.0.1)
-    newrelic_rpm (3.18.1.330)
+    newrelic_rpm (6.15.0)
     nio4r (2.5.7)
     pg (1.2.3)
     puma (5.2.2)
@@ -68,7 +68,7 @@ DEPENDENCIES
   dotenv
   foreman
   haml
-  newrelic_rpm (< 4.0)
+  newrelic_rpm (<= 6.15.0)
   pg
   puma
   sinatra
