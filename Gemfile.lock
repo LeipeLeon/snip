@@ -26,7 +26,7 @@ GEM
     minitest (5.10.3)
     multi_json (1.12.2)
     newrelic_rpm (3.18.1.330)
-    pg (0.18.4)
+    pg (0.21.0)
     puma (3.12.1)
     rack (1.6.10)
     rack-protection (1.5.5)
@@ -69,5 +69,8 @@ DEPENDENCIES
   sinatra-activerecord
   sinatra-contrib
 
+RUBY VERSION
+   ruby 2.4.10p364
+
 BUNDLED WITH
-   1.15.4
+   1.17.3
