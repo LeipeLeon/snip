@@ -20,7 +20,7 @@ GEM
     concurrent-ruby (1.1.8)
     dotenv (2.7.6)
     foreman (0.87.2)
-    haml (5.2.1)
+    haml (5.2.2)
       temple (>= 0.8.0)
       tilt
     i18n (1.8.9)
