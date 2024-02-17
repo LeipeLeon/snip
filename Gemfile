@@ -1,6 +1,7 @@
 source "https://rubygems.org"
 
 ruby "2.4.10"
+gem "dotenv"
 
 gem "sinatra"
 gem "sinatra-contrib"
@@ -10,7 +11,6 @@ gem "sinatra-activerecord"
 # gem "uri"
 gem "haml"
 gem "pg"
-gem "dotenv"
 
 gem "newrelic_rpm", "<= 6.15.0"
 

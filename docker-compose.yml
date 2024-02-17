@@ -1,0 +1,36 @@
+version: '3.7'
+
+services:
+  snip: &snip
+    build: .
+    ports:
+      - 3003:3000
+    command: bundle exec puma -C config/puma.rb
+    volumes:
+      - .:/app:delegated
+      - bundle:/usr/local/bundle:delegated,rw
+      - cache:/app/tmp/cache:delegated,rw
+      - log:/app/log:delegated,rw
+      - $HOME/.ssl:/app/ssl:cached,ro
+      - history:/usr/local/hist
+    environment: &backend-env
+      # Application configuration
+      MALLOC_ARENA_MAX: 2
+      WEB_CONCURRENCY: ${WEB_CONCURRENCY:-4}
+      # Caches
+      BOOTSNAP_CACHE_DIR: /usr/local/bundle/_bootsnap
+      HISTFILE: /usr/local/hist/.bash_history
+      PSQL_HISTFILE: /usr/local/hist/.psql_history
+      IRB_HISTFILE: /usr/local/hist/.irb_history
+      EDITOR: vi
+
+  runner:
+    <<: *snip
+    profiles: ["runner"]
+    command: /bin/bash
+
+volumes:
+  bundle:
+  cache:
+  log:
+  history:

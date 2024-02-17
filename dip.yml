@@ -1,0 +1,69 @@
+# Required minimum dip version
+version: '7.2'
+
+environment:
+  APP_ENV: development
+
+compose:
+  files:
+    - docker-compose.yml
+    - docker-compose.override.yml
+
+interaction:
+  sh:
+    description: Open a Bash shell within a Rails container (with dependencies up)
+    service: runner
+    command: /bin/bash
+
+  bash:
+    description: Run an arbitrary script within a container (or open a shell without deps)
+    service: runner
+    command: /bin/bash
+    compose_run_options: [no-deps]
+
+  exec:
+    description: Run an arbitrary script within a container (or open a shell without deps)
+    service: runner
+    compose_run_options: [no-deps]
+
+  bundle:
+    description: Run Bundler commands
+    service: runner
+    command: bundle
+    compose_run_options: [no-deps]
+
+  rake:
+    description: Run Rake commands
+    service: runner
+    command: bundle exec rake
+
+  guard:
+    description: Run red-green-red refactor loop using guard
+    service: runner
+    command: bundle exec guard
+
+  rspec:
+    description: Run Rails tests
+    service: runner
+    command: bundle exec rspec
+
+  standard:
+    description: Report deprecations
+    service: runner
+    command: bundle exec standardrb
+
+provision:
+  # # Remove old containers and volumes.
+  - dip compose down --volumes --remove-orphans
+
+  # Create SSL certificate chain for memoriam.dev.
+  # - bin/create_certs memoriam.dev
+
+  # Create mount points for specific directories. By creating them as current user the have correct user id and group id.
+  - mkdir -p tmp # node_modules ssl
+
+  # Build the development container (based on .devcontainer/Dockerfile)
+  - dip compose --profile runner build --no-cache
+
+  # Install gems
+  - dip bundle install
