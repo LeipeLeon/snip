@@ -8,6 +8,8 @@ require "uri"
 require "haml"
 require "logger"
 
+set :haml, layout: :layout, escape_html: false
+
 configure do
   LOGGER = Logger.new(File.expand_path(File.join(File.dirname(__FILE__), "log", "sinatra.log")))
 end
