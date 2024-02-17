@@ -33,7 +33,7 @@ use Airbrake::Rack::Middleware
 class Snip < ActiveRecord::Base
   def self.snip(url)
     uri = URI.parse(url)
-    raise "Invalid URL" unless uri.is_a? URI::HTTP or uri.is_a? URI::HTTPS
+    raise "Invalid URL" unless uri.is_a?(URI::HTTP) || uri.is_a?(URI::HTTPS)
     @snip = Snip.find_or_create_by(original: uri.to_s)
   end
 
@@ -88,7 +88,9 @@ error RuntimeError do
   haml :index
 end
 
-get "/" do haml :index end
+get "/" do
+  haml :index
+end
 
 get "/list" do
   @snips = Snip.find(:all, limit: 50, order: "id desc")
