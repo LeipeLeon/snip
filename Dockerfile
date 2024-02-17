@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-ARG RUBY_VERSION=2.4.10
+ARG RUBY_VERSION=3.3.0
 
 FROM ruby:$RUBY_VERSION-slim
 
@@ -10,7 +10,7 @@ RUN apt-get update -qq && apt-get install -y build-essential libpq-dev
 # libffi-dev
 # make
 
-ARG BUNDLER_VERSION=2.3.26
+ARG BUNDLER_VERSION=2.3.25
 
 # throw errors if Gemfile has been modified since Gemfile.lock
 RUN gem install bundler -v ${BUNDLER_VERSION} && bundle config --global allow_offline_install 1 jobs 5

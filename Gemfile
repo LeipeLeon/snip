@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-ruby "2.4.10"
+ruby "3.3.0"
 gem "dotenv"
 
 gem "sinatra"
@@ -12,9 +12,6 @@ gem "sinatra-activerecord"
 gem "haml"
 gem "pg"
 
-gem "newrelic_rpm", "<= 6.15.0"
+gem "newrelic_rpm"
 
 gem "airbrake"
-group :development do
-  gem "foreman"
-end
