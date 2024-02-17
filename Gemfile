@@ -15,3 +15,8 @@ gem "pg"
 gem "newrelic_rpm"
 
 gem "airbrake"
+
+group :development do
+  gem "standardrb"
+  gem "haml_lint", require: false
+end
