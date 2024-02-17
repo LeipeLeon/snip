@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source "https://rubygems.org"
 
 ruby "2.4.10"
 
@@ -12,9 +12,9 @@ gem "haml"
 gem "pg"
 gem "dotenv"
 
-gem 'newrelic_rpm', '<= 6.15.0'
+gem "newrelic_rpm", "<= 6.15.0"
 
-gem 'airbrake'
+gem "airbrake"
 group :development do
   gem "foreman"
 end

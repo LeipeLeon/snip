@@ -1,6 +1,6 @@
-require 'rake'
-require 'rake/testtask'
-require 'rake/rdoctask'
+require "rake"
+require "rake/testtask"
+require "rake/rdoctask"
 
 require "sinatra/activerecord/rake"
 

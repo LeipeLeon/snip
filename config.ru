@@ -1,11 +1,11 @@
-require 'rubygems'
-require 'bundler'
+require "rubygems"
+require "bundler"
 
 Bundler.require
 
-require 'sinatra'
-require 'newrelic_rpm'
-require './snip.rb'
+require "sinatra"
+require "newrelic_rpm"
+require "./snip"
 
 # log = File.new("log/sinatra.log", "a+")
 # $stdout.reopen(log)
