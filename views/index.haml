@@ -1,11 +1,1 @@
 %h1.title BurGr.nl!
-- unless @snip.nil?
-  %code= @snip.original
-  snipped to
-  %a{ href: env['HTTP_REFERER'] + @snip.snipped}
-    = env['HTTP_REFERER'] + @snip.snipped
-#err.warning= env['sinatra.error']
-%form{ method: 'post', action: '/' }
-  Verkorten:
-  %input{ type: 'text', name: 'original', size: '50' }
-  %input{ type: 'submit', value: 'snip!' }

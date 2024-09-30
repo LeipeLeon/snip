@@ -97,15 +97,15 @@ get "/list" do
   haml :list
 end
 
-get "/api" do
-  @snip = Snip.snip(params[:url])
-  "https://burgr.nl/#{@snip.snipped}"
-end
+# get "/api" do
+#   @snip = Snip.snip(params[:url])
+#   "https://burgr.nl/#{@snip.snipped}"
+# end
 
-post "/" do
-  @snip = Snip.snip(params[:original])
-  haml :index
-end
+# post "/" do
+#   @snip = Snip.snip(params[:original])
+#   haml :index
+# end
 
 get "/:snipped" do
   @snip = Snip.snap(params[:snipped])
