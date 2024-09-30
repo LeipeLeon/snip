@@ -93,7 +93,7 @@ get "/" do
 end
 
 get "/list" do
-  @snips = Snip.find(:all, limit: 50, order: "id desc")
+  @snips = Snip.limit(50).order("id desc")
   haml :list
 end
 
