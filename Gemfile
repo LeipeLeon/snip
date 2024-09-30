@@ -17,6 +17,6 @@ gem "newrelic_rpm"
 gem "airbrake"
 
 group :development do
-  gem "standardrb"
+  gem "standard", ">= 1.35.1"
   gem "haml_lint", require: false
 end
